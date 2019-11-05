@@ -91,18 +91,20 @@ L.Draw.Textmarker = L.Draw.Feature.extend({
 			this._map
 				.on('click', this._onClick, this)
 				.addLayer(this._textmarker);
-		}
-		else {
+		} else {
 			latlng = this._mouseTextmarker.getLatLng();
 			this._textmarker.setLatLng(latlng);
 		}
 	},
 
 	_createTextmarker: function (latlng) {
+		var input = window.prompt("", "");
+		var text = this._escapeHtml(input);
+
 		var ticon = L.divIcon({
-			 iconSize:null,
-			 html:'<div class="map-label"><div class="map-label-content">sfksödlfkdsfldskölk</div><div class="map-label-arrow"></div></div>'
-		   });
+			iconSize: null,
+			html: '<div class="map-label"><div class="map-label-content">' + text + '</div><div class="map-label-arrow"></div></div>'
+		});
 		return new L.Marker(latlng, {
 			icon: ticon,
 			zIndexOffset: this.options.zIndexOffset
@@ -125,11 +127,23 @@ L.Draw.Textmarker = L.Draw.Feature.extend({
 	},
 
 	_fireCreatedEvent: function () {
+		var input = window.prompt("", "");
+		var text = this._escapeHtml(input);
+
 		var ticon = L.divIcon({
-			 iconSize:null,
-			 html:'<div class="map-label"><div class="map-label-content">sfksödlfkdsfldskölk</div><div class="map-label-arrow"></div></div>'
-		   });
+			iconSize: null,
+			html: '<div class="map-label"><div class="map-label-content">' + text + '</div><div class="map-label-arrow"></div></div>'
+		});
 		var textmarker = new L.Marker.Touch(this._textmarker.getLatLng(), {icon: ticon});
 		L.Draw.Feature.prototype._fireCreatedEvent.call(this, textmarker);
+	},
+
+	_escapeHtml(unsafe) {
+		return unsafe
+			.replace(/&/g, "&amp;")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;")
+			.replace(/"/g, "&quot;")
+			.replace(/'/g, "&#039;");
 	}
 });
