@@ -102,6 +102,7 @@ L.drawLocal = {
 				rectangle: 'Draw a rectangle',
 				circle: 'Draw a circle',
 				marker: 'Draw a marker',
+				textmarker: 'Write text',
 				circlemarker: 'Draw a circlemarker'
 			}
 		},
