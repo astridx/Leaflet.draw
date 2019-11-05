@@ -19,7 +19,7 @@ L.Draw.Textmarker = L.Draw.Feature.extend({
 		// Save the type so super can fire, need to do this as cannot do this.TYPE :(
 		this.type = L.Draw.Textmarker.TYPE;
 
-		this._initialLabelText = L.drawLocal.draw.handlers.marker.tooltip.start;
+		this._initialLabelText = L.drawLocal.draw.handlers.textmarker.tooltip.start;
 
 		L.Draw.Feature.prototype.initialize.call(this, map, options);
 	},
@@ -99,8 +99,12 @@ L.Draw.Textmarker = L.Draw.Feature.extend({
 	},
 
 	_createTextmarker: function (latlng) {
+		var ticon = L.divIcon({
+			 iconSize:null,
+			 html:'<div class="map-label"><div class="map-label-content">sfksödlfkdsfldskölk</div><div class="map-label-arrow"></div></div>'
+		   });
 		return new L.Marker(latlng, {
-			icon: this.options.icon,
+			icon: ticon,
 			zIndexOffset: this.options.zIndexOffset
 		});
 	},
@@ -121,7 +125,11 @@ L.Draw.Textmarker = L.Draw.Feature.extend({
 	},
 
 	_fireCreatedEvent: function () {
-		var textmarker = new L.Marker.Touch(this._textmarker.getLatLng(), {icon: this.options.icon});
+		var ticon = L.divIcon({
+			 iconSize:null,
+			 html:'<div class="map-label"><div class="map-label-content">sfksödlfkdsfldskölk</div><div class="map-label-arrow"></div></div>'
+		   });
+		var textmarker = new L.Marker.Touch(this._textmarker.getLatLng(), {icon: ticon});
 		L.Draw.Feature.prototype._fireCreatedEvent.call(this, textmarker);
 	}
 });

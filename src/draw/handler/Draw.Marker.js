@@ -19,7 +19,7 @@ L.Draw.Marker = L.Draw.Feature.extend({
 		// Save the type so super can fire, need to do this as cannot do this.TYPE :(
 		this.type = L.Draw.Marker.TYPE;
 
-		this._initialLabelText = L.drawLocal.draw.handlers.textmarker.tooltip.start;
+		this._initialLabelText = L.drawLocal.draw.handlers.marker.tooltip.start;
 
 		L.Draw.Feature.prototype.initialize.call(this, map, options);
 	},
