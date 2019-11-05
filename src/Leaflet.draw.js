@@ -123,6 +123,11 @@ L.drawLocal = {
 					start: 'Click map to place marker.'
 				}
 			},
+			textmarker: {
+				tooltip: {
+					start: 'Click map to place text.'
+				}
+			},
 			polygon: {
 				tooltip: {
 					start: 'Click to start drawing shape.',
